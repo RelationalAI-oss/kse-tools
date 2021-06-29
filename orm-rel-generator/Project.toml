@@ -1,0 +1,7 @@
+name = "orm_rel_generator"
+uuid = "5bf63fd1-9e7e-4f69-aaf5-fc45cd0625dc"
+authors = []
+version = "0.1.0"
+
+[deps]
+EzXML = "8f5d6c58-4d21-5cfd-889c-e3ad7ee6a615"
