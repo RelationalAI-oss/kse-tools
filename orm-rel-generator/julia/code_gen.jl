@@ -9,8 +9,7 @@
 
 import Pkg
 
-# Pkg.activate((ENV["ORM_REL_GENERATOR"]))
-Pkg.activate(("."))
+Pkg.activate((ENV["ORM_REL_GENERATOR"]))
 
 using EzXML
 
@@ -340,7 +339,7 @@ function generate(orm_model::String, output_folder::String)
          end
          for ft in fact_types
             println(io)
-            println(io, "// Constraints for relations modeled by the '" * name(concept) * "' fact type")
+            println(io, "// Constraints for relations modeled by the '" * fact_name(ft) * "' fact type")
             for ft_constraint in rel_constraints_for(ft, M)
                println(io, emit(ft_constraint))
             end
