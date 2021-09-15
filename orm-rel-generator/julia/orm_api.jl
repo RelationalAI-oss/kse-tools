@@ -68,7 +68,7 @@ Given a diagram D that should depict a central concept
 """
 function central_concept(D, M)
 
-   concept_name_pattern = Regex("(?<concept>[^(:| )]+):concept")
+   concept_name_pattern = Regex("^(?<concept>[^(:| )]+)(?:.*):concept")
 
    concept_match = match(concept_name_pattern, name(D))
    if concept_match !== nothing
@@ -236,6 +236,19 @@ function has_named_roles(ft)::Bool
       if name(role) != ""
          return true
       end
+   end
+   return false
+end
+
+"""
+Check whether the role is played by an implicit boolean value type, which is
+used in the case of unary fact types
+"""
+function is_implicit_boolean(r_id, M)
+   player = role_player_by_id(r_id,M)
+   key = "IsImplicitBooleanValue"
+   if haskey(player, key)
+      return player[key] == "true"
    end
    return false
 end
