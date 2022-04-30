@@ -9,8 +9,7 @@
 
 import Pkg
 
-# Pkg.activate((ENV["ORM_REL_GENERATOR"]))
-Pkg.activate(("."))
+Pkg.activate((ENV["ORM_REL_GENERATOR"]))
 
 using EzXML
 
@@ -137,10 +136,15 @@ function user_named_relations_for(ft, M)::Vector{Predicate}
       else
          key_uc = uc_that_excludes_role_in_fact_type(role, ft, M)
          if key_uc === nothing
-            println("[Warning]: Cannot generate relation for role with name " *
-                    role_name *
-                    " in fact type " * fact_name(ft) *
-                    " because model lacks a non-spanning UC that excludes this role.")
+            # only print warning if it is not a unary fact type
+            # in which case there is always a second implicit boolean role player
+            rids = extract_role_ids(ft)
+            if !is_implicit_boolean(rids[1], M) & !is_implicit_boolean(rids[2], M)
+               println("[Warning]: Cannot generate relation for role with name " *
+                     role_name *
+                     " in fact type " * fact_name(ft) *
+                     " because model lacks a non-spanning UC that excludes this role.")
+            end
          else
             roles = extract_role_ids_from_simple(key_uc)
             rel = Predicate(role_name, id(key_uc), roles, id(role))
@@ -182,6 +186,16 @@ function rel_mandatory_constraint(mc_id, rel, M)::IC
    IC(constraint_name,
       [var],
       Implication(RelAtom(role_player, var), atom))
+end
+
+"""
+Given an ORM unary fact ft, a Rel predicate rel,
+   and a model M, construct a Rel subset constraint.
+"""
+function rel_subset_constraint(ft, rel, M)::Clause
+   constraint_name = "$(rel.relname)_subset"
+   r_id = extract_role_ids(ft)[1]
+   IC(constraint_name, Implication(RelAtom(rel,"v"), RelAtom(rel_type_of_role_player(r_id, M),"v")))
 end
 
 """
@@ -244,7 +258,10 @@ function rel_constraints_for(ft, M)::Vector{Clause}
    else
       for rel in relations_for_non_refmode(ft, M)
          push!(relations, rel)
-         if size(rel.value_role_seq)[1] > 0
+         # Separate if for unary facts
+         if is_implicit_boolean(rel.value_role_seq[1], M) & size(rel.key_role_seq)[1] == 1 
+            push!(constraints, rel_subset_constraint(ft, rel, M))
+         elseif size(rel.value_role_seq)[1] + size(rel.key_role_seq)[1] > 0
             # Then there must be at least one non-spanning UC
             for uc_id in extract_uc_ids_of(ft)
                push!(constraints, rel_many_one_constraint(uc_id, rel, M))
@@ -253,7 +270,10 @@ function rel_constraints_for(ft, M)::Vector{Clause}
       end
    end
    for rel in relations
-      push!(constraints, rel_type_constraint(rel, M))
+      # Exclude unary facts
+      if !(is_implicit_boolean(rel.value_role_seq[1], M) & size(rel.key_role_seq)[1] == 1)
+         push!(constraints, rel_type_constraint(rel, M))
+      end
       for mc_id in extract_mc_ids_of(ft)
          push!(constraints, rel_mandatory_constraint(mc_id, rel, M))
       end
@@ -323,7 +343,10 @@ function generate(orm_model::String, output_folder::String)
       concept === nothing && continue
 
       filename = lowercase(name(concept)) * "_schema.rel"
-      open("$output_folder/$filename", "w") do io
+      # Instead of opening a file for writing,
+      # use the line below for debugging purposes from vscode
+      let io = Base.stdout
+      # open("$output_folder/$filename", "w") do io
          println(io)
          println(io, "// Constraints for the '" * name(concept) * "' concept and its subtypes")
          concept_constraints = Clause[]
@@ -340,7 +363,7 @@ function generate(orm_model::String, output_folder::String)
          end
          for ft in fact_types
             println(io)
-            println(io, "// Constraints for relations modeled by the '" * name(concept) * "' fact type")
+            println(io, "// Constraints for relations modeled by the '" * fact_name(ft) * "' fact type")
             for ft_constraint in rel_constraints_for(ft, M)
                println(io, emit(ft_constraint))
             end
