@@ -45,7 +45,7 @@
 				</orm:PlayedRoles>
 				<orm:ConceptualDataType id="_64B541AE-6BE3-4AFB-957E-6763FCBCB876" ref="_D085BC5F-F6B9-4CBE-84A5-0CC2BDA386FB" Scale="0" Length="0" />
 			</orm:ValueType>
-			<orm:ObjectifiedType id="_2636A9DE-AE7A-4D0C-87E5-821C8B16F2AE" Name="Student&quot;PresentsAt&quot;ConferenceAtPresentationTime" _ReferenceMode="">
+			<orm:ObjectifiedType id="_2636A9DE-AE7A-4D0C-87E5-821C8B16F2AE" Name="StudentPresentsAtConferenceAtPresentationTime" _ReferenceMode="">
 				<orm:PlayedRoles>
 					<orm:Role ref="_E5CCECB3-D4D6-4858-B386-37515E3E639E" />
 					<orm:Role ref="_18411F15-6594-493E-9D15-076A72E11281" />
@@ -261,7 +261,7 @@
 					<orm:UniquenessConstraint ref="_70334480-26D2-4418-B7CC-5E2B4D224BE2" />
 				</orm:InternalConstraints>
 			</orm:SubtypeFact>
-			<orm:Fact id="_BA032E30-ED9E-4DAD-87F8-C7D8C7346A24" _Name="Student&quot;PresentsAt&quot;ConferenceAtPresentationTime">
+			<orm:Fact id="_BA032E30-ED9E-4DAD-87F8-C7D8C7346A24" _Name="StudentPresentsAtConferenceAtPresentationTime">
 				<orm:FactRoles>
 					<orm:Role id="_BACA9261-9B1E-4DBA-9D3E-3B51D4848EF2" _IsMandatory="false" _Multiplicity="Unspecified" Name="">
 						<orm:RolePlayer ref="_8A744ED6-D32A-4AA8-9F99-223D7D30AD3E" />
@@ -277,9 +277,9 @@
 					<orm:ReadingOrder id="_E5C021B8-365C-4315-A9E1-1BCED4DAA1D8">
 						<orm:Readings>
 							<orm:Reading id="_114C2DB0-8CE4-4545-9F7C-56D3F1DD3439">
-								<orm:Data>{0} "presents at" {1} at {2}</orm:Data>
+								<orm:Data>{0} presents at {1} at {2}</orm:Data>
 								<orm:ExpandedData>
-									<orm:RoleText RoleIndex="0" FollowingText=" &quot;presents at&quot; " />
+									<orm:RoleText RoleIndex="0" FollowingText=" presents at " />
 									<orm:RoleText RoleIndex="1" FollowingText=" at " />
 								</orm:ExpandedData>
 							</orm:Reading>
@@ -295,7 +295,7 @@
 					<orm:UniquenessConstraint ref="_1D49A0EF-164D-4BA2-9F77-95B3E65FEE63" />
 				</orm:InternalConstraints>
 			</orm:Fact>
-			<orm:ImpliedFact id="_4C917306-D5E7-4732-8A65-B93CFC3A8F59" _Name="StudentIsInvolvedInStudent&quot;PresentsAt&quot;ConferenceAtPresentationTime">
+			<orm:ImpliedFact id="_4C917306-D5E7-4732-8A65-B93CFC3A8F59" _Name="StudentIsInvolvedInStudentPresentsAtConferenceAtPresentationTime">
 				<orm:FactRoles>
 					<orm:RoleProxy id="_5BE8B8C8-4D95-46E0-879C-62D03B5F144A">
 						<orm:Role ref="_BACA9261-9B1E-4DBA-9D3E-3B51D4848EF2" />
@@ -340,7 +340,7 @@
 				</orm:InternalConstraints>
 				<orm:ImpliedByObjectification ref="_E66786AB-4BA6-4E4E-B5D8-49B92E040568" />
 			</orm:ImpliedFact>
-			<orm:ImpliedFact id="_10536A08-A572-4128-9647-0716861906C3" _Name="ConferenceIsInvolvedInStudent&quot;PresentsAt&quot;ConferenceAtPresentationTime">
+			<orm:ImpliedFact id="_10536A08-A572-4128-9647-0716861906C3" _Name="ConferenceIsInvolvedInStudentPresentsAtConferenceAtPresentationTime">
 				<orm:FactRoles>
 					<orm:RoleProxy id="_8FAA00BA-6C1B-4D3D-812F-1F4B47261928">
 						<orm:Role ref="_EF354C02-DC84-47A3-A01F-5FF03417737B" />
@@ -385,7 +385,7 @@
 				</orm:InternalConstraints>
 				<orm:ImpliedByObjectification ref="_E66786AB-4BA6-4E4E-B5D8-49B92E040568" />
 			</orm:ImpliedFact>
-			<orm:ImpliedFact id="_AD219126-F7AD-40B2-8B44-F831E93158A2" _Name="PresentationTimeIsInvolvedInStudent&quot;PresentsAt&quot;ConferenceAtPresentationTime">
+			<orm:ImpliedFact id="_AD219126-F7AD-40B2-8B44-F831E93158A2" _Name="PresentationTimeIsInvolvedInStudentPresentsAtConferenceAtPresentationTime">
 				<orm:FactRoles>
 					<orm:RoleProxy id="_1A4FAEC1-4A63-4F1C-822A-02A8471A70B3">
 						<orm:Role ref="_03FD96B6-D3A5-4BE7-88BF-9249389040BB" />
@@ -1357,7 +1357,7 @@
 			</ormDiagram:ObjectTypeShape>
 			<ormDiagram:FactTypeShape id="_66D9199F-EE24-4664-8E85-F5BDD98BFFB3" IsExpanded="true" AbsoluteBounds="3.9212962962962963, 1.7031481481481481, 0.5438888889923692, 0.24388888899236916">
 				<ormDiagram:RelativeShapes>
-					<ormDiagram:ReadingShape id="_9EBA93B8-9C7D-4827-A3DE-8DC6ED16E66F" IsExpanded="true" AbsoluteBounds="3.6253182870370377, 2.0117885504428434, 1.0624027252197266, 0.12950302660465241">
+					<ormDiagram:ReadingShape id="_9EBA93B8-9C7D-4827-A3DE-8DC6ED16E66F" IsExpanded="true" AbsoluteBounds="3.6253182870370377, 2.0117885504428434, 0.98198556900024414, 0.12950302660465241">
 						<ormDiagram:Subject ref="_E5C021B8-365C-4315-A9E1-1BCED4DAA1D8" />
 					</ormDiagram:ReadingShape>
 				</ormDiagram:RelativeShapes>
@@ -1427,7 +1427,7 @@
 			</ormDiagram:ObjectTypeShape>
 			<ormDiagram:FactTypeShape id="_230B033F-839E-4111-BB6D-03C39135CD95" IsExpanded="true" AbsoluteBounds="5.1712964552420182, 3.3989815609543408, 0.5438888889923692, 0.24388888899236916">
 				<ormDiagram:RelativeShapes>
-					<ormDiagram:ReadingShape id="_F8ABA892-1AB4-4ACC-9CDE-F749BEAD3B25" IsExpanded="true" AbsoluteBounds="4.87531844598276, 3.7076219632490361, 1.0624027252197266, 0.12950302660465241">
+					<ormDiagram:ReadingShape id="_F8ABA892-1AB4-4ACC-9CDE-F749BEAD3B25" IsExpanded="true" AbsoluteBounds="4.87531844598276, 3.7076219632490361, 0.98198556900024414, 0.12950302660465241">
 						<ormDiagram:Subject ref="_E5C021B8-365C-4315-A9E1-1BCED4DAA1D8" />
 					</ormDiagram:ReadingShape>
 				</ormDiagram:RelativeShapes>
