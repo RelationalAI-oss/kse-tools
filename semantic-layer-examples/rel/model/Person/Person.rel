@@ -1,0 +1,25 @@
+
+value type SocialSecurityNr = Int
+value type Age = Int
+entity type Person = SocialSecurityNr
+def Person(p) { person:id(p, _) }
+
+module person
+
+	def id(p, snr) =
+        source_catalog:persons_csv:social_security_nr(_, nr) and 
+        snr = ^SocialSecurityNr[parse_int[nr]] and
+        p = ^Person[snr]
+        from nr
+	def age(p, a) = 
+        source_catalog:persons_csv:age(r, sa) and
+        source_catalog:persons_csv:social_security_nr(r, nr) and 
+        a = ^Age[parse_int[sa]] and
+        snr = ^SocialSecurityNr[parse_int[nr]] and
+        p = ^Person[snr]
+        from sa, nr, snr, r
+        
+	// def holds = 
+
+
+end

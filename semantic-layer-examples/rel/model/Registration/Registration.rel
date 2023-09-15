@@ -1,0 +1,19 @@
+
+entity type Registration = Person, Event
+def Registration(r) = registration:id(r, _, _)
+
+module registration
+    def id(reg, p, e) =         
+        source_catalog:registrations_csv:registrant(r, srid) and
+        source_catalog:registrations_csv:event(r, seid) and 
+        eid = ^EventId[parse_int[seid]] and
+        e = ^Event[eid] and
+        pid = ^SocialSecurityNr[parse_int[srid]] and
+        p = ^Person[pid] and
+        reg = ^Registration[p, e]
+        from r, srid, seid, eid, pid
+	def permits_entry_to(r, e) = id(r, _, e) 
+        
+	def registrant(r, p) = id(r, p, _) 
+ 
+end
