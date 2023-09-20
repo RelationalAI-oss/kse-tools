@@ -4,8 +4,8 @@ def Registration(r) = registration:id(r, _, _)
 
 module registration
     def id(reg, p, e) =         
-        source_catalog:registrations_csv:registrant(r, srid) and
-        source_catalog:registrations_csv:event(r, seid) and 
+        simple_source_catalog:registrations_csv:registrant(r, srid) and
+        simple_source_catalog:registrations_csv:event(r, seid) and 
         eid = ^EventId[parse_int[seid]] and
         e = ^Event[eid] and
         pid = ^SocialSecurityNr[parse_int[srid]] and

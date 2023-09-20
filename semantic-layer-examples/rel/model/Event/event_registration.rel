@@ -4,20 +4,20 @@ def Event(e) { event:id(e, _) }
 
 module event
  	def id(e, eid) =
-        source_catalog:events_csv:event_id(_, id) and 
+        simple_source_catalog:events_csv:event_id(_, id) and 
         eid = ^EventId[parse_int[id]] and
         e = ^Event[eid]
         from id
 	def starts_at(e, s) = 
-        source_catalog:events_csv:starts_at(r, fs) and
-        source_catalog:events_csv:event_id(r, id) and 
+        simple_source_catalog:events_csv:starts_at(r, fs) and
+        simple_source_catalog:events_csv:event_id(r, id) and 
         s = parse_date[fs, "yyyymmdd"] and
         eid = ^EventId[parse_int[id]] and
         e = ^Event[eid]
         from r, fs, eid, id
     def finishes_at(e, f) = 
-        source_catalog:events_csv:finishes_at(r, fs) and
-        source_catalog:events_csv:event_id(r, id) and 
+        simple_source_catalog:events_csv:finishes_at(r, fs) and
+        simple_source_catalog:events_csv:event_id(r, id) and 
         f = parse_date[fs, "yyyymmdd"] and
         eid = ^EventId[parse_int[id]] and
         e = ^Event[eid]

@@ -85,8 +85,8 @@ def config_students:data = """
 }
 """
 
-def insert:source_catalog = :persons_csv, load_csv[config_persons]
-def insert:source_catalog = :events_csv, load_csv[config_events]
-def insert:source_catalog = :registrations_csv, load_csv[config_registrations]
-def insert:source_catalog = :legal_entites_csv, load_csv[config_legal_entites]
-def insert:source_catalog = :students_json, load_json_general[config_students]
+def insert:simple_source_catalog = :persons_csv, load_csv[config_persons]
+def insert:simple_source_catalog = :events_csv, load_csv[config_events]
+def insert:simple_source_catalog = :registrations_csv, load_csv[config_registrations]
+def insert:simple_source_catalog = :legal_entites_csv, load_csv[config_legal_entites]
+def insert:simple_source_catalog = :students_json, load_json_general[config_students]

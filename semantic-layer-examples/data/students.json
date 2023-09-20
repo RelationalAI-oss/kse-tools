@@ -1,21 +1,27 @@
 {
     "students": [
         {
-            "socialSecurityNr" : 123450,
-            "age": 21,
+            "personalDetails": {
+                "socialSecurityNr" : 123450,
+                "age": 21
+            },
             "level": "undergrad",
             "presenterAt": [
                 9002
             ]
         },
         {
-            "socialSecurityNr" : 123451,
-            "age": 24,
+            "personalDetails": {
+                "socialSecurityNr" : 123451,
+                "age": 24
+            },
             "level": "graduate"
         },
         {
-            "socialSecurityNr" : 123452,
-            "age": 23,
+            "personalDetails": {
+                "socialSecurityNr" : 123452,
+                "age": 23
+            },
             "level": "graduate",
             "presenterAt": [
                 9000,
@@ -23,23 +29,31 @@
             ]
         },
         {
-            "socialSecurityNr" : 123453,
-            "age": 27,
+            "personalDetails": {
+                "socialSecurityNr" : 123453,
+                "age": 27
+            },
             "level": "undergrad"
         },
         {
-            "socialSecurityNr" : 123454,
-            "age": 29,
+            "personalDetails": {
+                "socialSecurityNr" : 123454,
+                "age": 29
+            },
             "level": "graduate"
         },
         {
-            "socialSecurityNr" : 123455,
-            "age": 21,
+            "personalDetails": {
+                "socialSecurityNr" : 123455,
+                "age": 21
+            },
             "level": "undergrad"
         },
         {
-            "socialSecurityNr" : 123456,
-            "age": 20,
+            "personalDetails": {
+                "socialSecurityNr" : 123456,
+                "age": 20
+            },
             "level": "undergrad",
             "presenterAt": [
                 9001
